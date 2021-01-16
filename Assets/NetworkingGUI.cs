@@ -31,6 +31,7 @@ public class NetworkingGUI : MonoBehaviour {
     public string rx, tx;
     private CustomTextGUI customTextGUI;
     public int connectedPlayers = 0;
+    public Texture otherPlayerTexture;
 
     void Start() {
         customTextGUI = new CustomTextGUI(Screen.width, Screen.height);
@@ -46,6 +47,12 @@ public class NetworkingGUI : MonoBehaviour {
 
             if (tx != null) customTextGUI.Text("tx: " + tx);
             if (rx != null) customTextGUI.Text("rx: " + rx);
+        }
+
+        List<OtherPlayer> otherPlayers = GetComponent<NetworkingHandler>().otherPlayers;
+
+        foreach (OtherPlayer otherPlayer in otherPlayers) {
+            GUI.Box(new Rect(otherPlayer.x, otherPlayer.y, otherPlayerTexture.width, otherPlayerTexture.height), otherPlayerTexture);
         }
     }
 }

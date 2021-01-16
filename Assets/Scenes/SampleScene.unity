@@ -154,6 +154,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectionStatus: Not connected
+  rx: 
+  tx: 
+  connectedPlayers: 0
+  otherPlayerTexture: {fileID: 2800000, guid: 624d579a10ef5044cbd40f85a97c2adb, type: 3}
 --- !u!4 &118877383
 Transform:
   m_ObjectHideFlags: 0

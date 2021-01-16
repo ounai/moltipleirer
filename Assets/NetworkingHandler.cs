@@ -4,15 +4,33 @@ using UnityEngine;
 
 using Client;
 
+public class OtherPlayer {
+    public int id;
+    public float x;
+    public float y;
+
+    public OtherPlayer(int id, float x, float y) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+    }
+}
+
 public class NetworkingHandler : MonoBehaviour {
     public string ip = "51.195.222.59";
     public int port = 31337;
     private TextUDPClient textUDPClient;
     private NetworkingGUI networkingGUI;
+    public List<OtherPlayer> otherPlayers = new List<OtherPlayer>();
 
     void HandleJoin(string packet) {
         networkingGUI.connectedPlayers++;
-        // TODO
+
+        int id = int.Parse(packet.Split('|')[1]);
+        float x = float.Parse(packet.Split('|')[2]);
+        float y = float.Parse(packet.Split('|')[3]);
+
+        otherPlayers.Add(new OtherPlayer(id, x, y));
     }
 
     void HandleLeave(string packet) {
